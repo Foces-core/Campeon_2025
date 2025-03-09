@@ -1,10 +1,7 @@
 .aboutContainer {
   min-height: 100vh;
-  background: linear-gradient(135deg, 
-    rgba(0,0,0,0.97), 
-    rgba(9,9,16,0.97)
-  ),
-  url('https://static.vecteezy.com/system/resources/previews/002/125/777/non_2x/abstract-sports-players-action-vector.jpg'); /* Add this image to your public folder */
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.97), rgba(9, 9, 16, 0.97)),
+    url("https://static.vecteezy.com/system/resources/previews/002/125/777/non_2x/abstract-sports-players-action-vector.jpg"); /* Add this image to your public folder */
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -12,6 +9,7 @@
   padding: 120px 2rem 4rem;
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 
 .content {
@@ -28,7 +26,7 @@
 
 /* Add a subtle animated overlay */
 .aboutContainer::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -45,8 +43,13 @@
 }
 
 @keyframes pulseOverlay {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .title {
@@ -56,7 +59,7 @@
   background: linear-gradient(90deg, #ff00c1, #00fff9);
   background-clip: text;
   -webkit-background-clip: text;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .grid {
@@ -67,8 +70,8 @@
 }
 
 .card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 2rem;
   border-radius: 12px;
   backdrop-filter: blur(10px);
@@ -83,29 +86,29 @@
 .cardIcon {
   color: #00fff9;
   margin-bottom: 1rem;
-  filter: drop-shadow(0 0 10px rgba(0,255,249,0.3));
+  filter: drop-shadow(0 0 10px rgba(0, 255, 249, 0.3));
 }
 
 .cardTitle {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: #fff;
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 
 .cardText {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.6;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .highlightSection {
   width: 60%;
   margin: 2rem 0;
   padding: 3rem;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .logo {
@@ -126,7 +129,7 @@
 
 .statNumber {
   font-size: 3rem;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   background: linear-gradient(90deg, #ff00c1, #00fff9);
   background-clip: text;
   -webkit-background-clip: text;
@@ -135,7 +138,7 @@
 }
 
 .statLabel {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -160,5 +163,61 @@
 
   .innercontent {
     flex-direction: column;
+  }
+}
+
+/* animation */
+.marqueeContainer {
+  position: absolute;
+
+  overflow: hidden;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.7;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.marquee {
+  display: flex;
+  width: 200%; /* Double width to prevent gaps */
+  animation: scroll 30s linear infinite;
+}
+
+.marquee span {
+  /* font-size: 10rem; */
+  font-size: 8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-family: "Orbitron", sans-serif;
+  letter-spacing: 1rem;
+  background: linear-gradient(90deg, #ff00c1, #00fff9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.15;
+  white-space: nowrap;
+  padding-right: 4rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  } /* Adjust to half width for seamless loop */
+}
+
+@media (max-width: 768px) {
+  .marqueeContainer {
+    display: none;
+  }
+  .marquee span {
+    font-size: 5rem;
+    letter-spacing: 0.5rem;
   }
 }

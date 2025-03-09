@@ -1,19 +1,75 @@
-import { Trophy, Users, Medal, Target, Calendar, MapPin } from 'lucide-react';
-import styles from '../styles/About.module.css';
-import logo from "../assets/cec_logo_300.png"
+import { Trophy, Users, Medal, Target, Calendar, MapPin } from "lucide-react";
+import { useRef, useEffect } from "react";
+import styles from "../styles/About.module.css";
+import logo from "../assets/cec_logo_300.png";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin for animaiton
+gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  //ANIMATION START
+  const textRef = useRef(null); // Ref for the text animation
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    // Split the text into letters and wrap each letter in a <span>
+    const text = textRef.current;
+    const letters = text.innerText.split("");
+    text.innerHTML = letters
+      .map(
+        (letter, index) =>
+          `<span key=${index} style="opacity: 0;" class="animated-letter">${letter}</span>`
+      )
+      .join("");
+
+    // Create the scroll-based staggered animation
+    gsap.to(text.querySelectorAll(".animated-letter"), {
+      opacity: 1,
+      stagger: 0.05,
+      scrollTrigger: {
+        trigger: text,
+        start: "top 95%",
+        end: "top 50%",
+        scrub: !isMobile,
+      },
+    });
+  }, []);
+  //ANIMATION END
+
   return (
     <div className={styles.aboutContainer}>
+      <div className={styles.marqueeContainer}>
+        <div className={styles.marquee} data-aos="slide-left">
+          <span>
+            About Campeon • About Campeon • About Campeon • About Campeon •
+            About Campeon • About Campeon • About Campeon • About Campeon •
+            About Campeon • About Campeon • About Campeon • About Campeon •
+            About Campeon • About Campeon • About Campeon • About Campeon •
+          </span>
+        </div>
+      </div>
       <div className={styles.content}>
-        <h1 className={styles.title}>About CAMPEON</h1>
+        <h1 ref={textRef} className={styles.title}>
+          About CAMPION
+        </h1>
         <div className={styles.innercontent}>
           <div className={styles.highlightSection}>
             <p className={styles.cardText}>
-            CAMPEON is Kerala's premier inter-college sports tournament, bringing together athletic talent from across the state in a celebration of sportsmanship, competition, and excellence. This highly anticipated event serves as a platform for students to showcase their skills, foster teamwork, and build lifelong connections through the spirit of sports.
-            With a diverse lineup of events, including County Cricket, 7's Football, Table Tennis, and Volleyball, CAMPEON provides an electrifying atmosphere where colleges compete for ultimate glory. The tournament is not just about winning—it’s about pushing limits, embracing challenges, and creating unforgettable moments on and off the field.
+              CAMPEON is Kerala's premier inter-college sports tournament,
+              bringing together athletic talent from across the state in a
+              celebration of sportsmanship, competition, and excellence. This
+              highly anticipated event serves as a platform for students to
+              showcase their skills, foster teamwork, and build lifelong
+              connections through the spirit of sports. With a diverse lineup of
+              events, including County Cricket, 7's Football, Table Tennis, and
+              Volleyball, CAMPEON provides an electrifying atmosphere where
+              colleges compete for ultimate glory. The tournament is not just
+              about winning—it’s about pushing limits, embracing challenges, and
+              creating unforgettable moments on and off the field.
             </p>
-            
+
             <div className={styles.stats}>
               <div className={styles.statItem}>
                 <div className={styles.statNumber}>15+</div>
@@ -79,8 +135,8 @@ export default function About() {
             <MapPin className={styles.cardIcon} size={32} />
             <h3 className={styles.cardTitle}>Venue</h3>
             <p className={styles.cardText}>
-              Hosted at world-class facilities across Kerala, providing the perfect stage
-              for exceptional sporting moments.
+              Hosted at world-class facilities across Kerala, providing the
+              perfect stage for exceptional sporting moments.
             </p>
           </div>
         </div>

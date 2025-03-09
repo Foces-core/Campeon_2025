@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import client from "../sanity/sanityClient";
 import "../styles/LatestUpdates.css";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LatestUpdates() {
   const [updates, setUpdates] = useState([]);
