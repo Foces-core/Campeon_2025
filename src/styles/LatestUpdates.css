@@ -224,7 +224,26 @@
     margin-top: 20px;
     font-size: 2rem;
   }
+
+  .mid {
+    display: flex;
+    flex-direction: column;
+  }
+
   .venue {
-    display: none;
+    order: 2;
+    margin-top: 5px;
+  }
+  .match {
+    align-self: center;
+    /* justify-content: space-around; */
+    /* justify-content: center; */
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .match {
+    display: flex;
   }
 }
