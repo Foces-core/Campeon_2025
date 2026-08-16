@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@sanity/client": "^6.28.3",
+    "@sanity/client": "^8.0.0",
     "@studio-freight/lenis": "^1.0.42",
     "aos": "^2.3.4",
     "framer-motion": "^12.4.7",
