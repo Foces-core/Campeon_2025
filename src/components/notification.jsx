@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import client from "../sanity/sanityClient";
 import "../styles/LatestUpdates.css";
 

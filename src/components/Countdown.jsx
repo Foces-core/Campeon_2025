@@ -1,25 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Countdown.module.css';
 
-export default function Countdown({ targetDate }) {
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+function calculateTimeLeft(targetDate) {
+  const difference = new Date(targetDate) - new Date();
 
-  function calculateTimeLeft() {
-    const difference = new Date(targetDate) - new Date();
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / 1000 / 60) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  }
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((difference / 1000 / 60) % 60),
+    seconds: Math.floor((difference / 1000) % 60),
+  };
+}
+
+export default function Countdown({ targetDate }) {
+  const [timeLeft, setTimeLeft] = useState(() => calculateTimeLeft(targetDate));
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+    const updateCountdown = () => setTimeLeft(calculateTimeLeft(targetDate));
+    updateCountdown();
+
+    const timer = window.setInterval(updateCountdown, 1000);
+    return () => window.clearInterval(timer);
+  }, [targetDate]);
 
   return (
     <div className={styles.countdown}>
@@ -32,3 +35,7 @@ export default function Countdown({ targetDate }) {
     </div>
   );
 }
+
+Countdown.propTypes = {
+  targetDate: PropTypes.string.isRequired,
+};

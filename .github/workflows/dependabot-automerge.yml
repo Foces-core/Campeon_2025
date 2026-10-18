@@ -31,8 +31,7 @@ jobs:
               const hasAnything = runs.length > 0 || statuses.length > 0;
               if (!hasAnything) {
                 if (i > 10) {
-                  console.log('No CI checks configured; proceeding with merge');
-                  return;
+                  throw new Error('No CI checks reported for this Dependabot commit; refusing to merge');
                 }
               } else {
                 const allRunsDone = runs.every(r => r.status === 'completed');
