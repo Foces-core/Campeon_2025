@@ -9,6 +9,15 @@ updates:
       - "dependencies"
     commit-message:
       prefix: "chore(deps)"
+  - package-ecosystem: "npm"
+    directory: "/campeon2"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+    commit-message:
+      prefix: "chore(deps)"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:

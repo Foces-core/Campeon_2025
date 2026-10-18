@@ -1,4 +1,4 @@
-import { Trophy, Users, Medal, Target, Calendar, MapPin } from 'lucide-react';
+import { Trophy, Users, Medal, Target, MapPin } from 'lucide-react';
 import styles from '../styles/About.module.css';
 import logo from "../assets/cec_logo_300.png"
 
@@ -10,8 +10,8 @@ export default function About() {
         <div className={styles.innercontent}>
           <div className={styles.highlightSection}>
             <p className={styles.cardText}>
-            CAMPEON is Kerala's premier inter-college sports tournament, bringing together athletic talent from across the state in a celebration of sportsmanship, competition, and excellence. This highly anticipated event serves as a platform for students to showcase their skills, foster teamwork, and build lifelong connections through the spirit of sports.
-            With a diverse lineup of events, including County Cricket, 7's Football, Table Tennis, and Volleyball, CAMPEON provides an electrifying atmosphere where colleges compete for ultimate glory. The tournament is not just about winning—it’s about pushing limits, embracing challenges, and creating unforgettable moments on and off the field.
+            CAMPEON is Kerala&apos;s premier inter-college sports tournament, bringing together athletic talent from across the state in a celebration of sportsmanship, competition, and excellence. This highly anticipated event serves as a platform for students to showcase their skills, foster teamwork, and build lifelong connections through the spirit of sports.
+            With a diverse lineup of events, including County Cricket, 7&apos;s Football, Table Tennis, and Volleyball, CAMPEON provides an electrifying atmosphere where colleges compete for ultimate glory. The tournament is not just about winning—it’s about pushing limits, embracing challenges, and creating unforgettable moments on and off the field.
             </p>
             
             <div className={styles.stats}>

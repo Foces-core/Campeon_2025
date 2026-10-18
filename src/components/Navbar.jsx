@@ -6,11 +6,7 @@ import styles from "../styles/Navbar.module.css";
 export default function Navbar() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768); //remove later when the navbar is done
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth > 768);
 
   useEffect(() => {
     const handleResize = () => setIsDesktop(window.innerWidth > 768);
@@ -19,11 +15,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    return () => {
       document.body.style.overflow = "unset";
-    }
+    };
   }, [isMenuOpen]);
 
   const navLinks = [
@@ -32,15 +27,19 @@ export default function Navbar() {
   ];
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((open) => !open);
   };
 
-  // Function to scroll to the top
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  const handleNavigate = () => {
+    setIsMenuOpen(false);
+    scrollToTop();
   };
 
   return (
@@ -60,8 +59,8 @@ export default function Navbar() {
             <Link
               key={path}
               to={path}
+              onClick={handleNavigate}
               className={location.pathname === path ? styles.active : ""}
-              onClick={scrollToTop}
             >
               {label}
             </Link>
@@ -76,17 +75,18 @@ export default function Navbar() {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </div>
         <div
-          className={`${styles.mobileMenu} ${
-            isMenuOpen ? styles.mobileMenuOpen : ""
-          }`}
+          className={
+            styles.mobileMenu + (isMenuOpen ? " " + styles.mobileMenuOpen : "")
+          }
         >
           {navLinks.map(({ path, label }) => (
             <Link
               key={path}
               to={path}
+              onClick={handleNavigate}
               className={
                 location.pathname === path
-                  ? `${styles.active} ${styles.mobileLink}`
+                  ? styles.active + " " + styles.mobileLink
                   : styles.mobileLink
               }
             >
@@ -94,8 +94,6 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        {/* TO:DO- Add the thigs that are to be added in this div*/}
-        {/* remove this when the navbar is done */}
         {isDesktop && <div style={{ width: "50px" }}></div>}
       </div>
     </nav>

@@ -59,7 +59,7 @@ function App() {
       setLoading(false);
     }, 2800); // Slightly longer to ensure glitch effect is visible
     return () => clearTimeout(timeOut);
-  }, [Location]);
+  }, []);
 
   return (
     <Router>
