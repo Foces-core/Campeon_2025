@@ -23,6 +23,8 @@ jobs:
           cache-dependency-path: |
             package-lock.json
             campeon2/package-lock.json
+      - name: Pin npm version
+        run: npm install --global npm@10.9.4
       - name: Install website dependencies
         run: npm ci
       - name: Lint website
